@@ -10,10 +10,17 @@ import java.util.Scanner;
 
 import javax.xml.bind.DatatypeConverter;
 
+/**
+ * 计算一个文件的摘要,digest, 因为读取文件耗时较长，所以单独起个线程去做
+ * 这件事，另外，看到javax.xml.bind.DatatypeConverter吗？ 这里面用到了它的一个方法，把字节数组转换成16进制字符串，
+ * 另外，看看如何获取一个文件的摘要！
+ *
+ * @author jelex.xu
+ * @date 2017年9月3日
+ */
 public class DigestThread extends Thread {
 
 	private String fileName;
-
 
 	public static void main(String[] args) {
 
@@ -24,10 +31,11 @@ public class DigestThread extends Thread {
 
 		sc.close();
 
-		if(fileNames.trim().isEmpty()) return;
+		if (fileNames.trim().isEmpty())
+			return;
 
 		String[] fns = fileNames.split(",");
-		for(String fn : fns) {
+		for (String fn : fns) {
 			new DigestThread(fn).start();
 		}
 	}
@@ -39,11 +47,14 @@ public class DigestThread extends Thread {
 		try {
 			in = new FileInputStream(fileName);
 			MessageDigest sha = MessageDigest.getInstance("SHA-256");
+			// Creates a digest input stream, using the specified input stream
+			// and message digest.
 			din = new DigestInputStream(in, sha);
-			//指着文件结尾
-			//Reads a byte, and updates the message digest (if the digest
+			// 指着文件结尾
+			// Reads a byte, and updates the message digest (if the digest
 			// function is on)
-			while(din.read() != -1) ;
+			while (din.read() != -1)
+				;
 
 			byte[] digest = sha.digest();
 
@@ -59,13 +70,13 @@ public class DigestThread extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if(in != null) {
+			if (in != null) {
 				try {
 					in.close();
 				} catch (IOException e) {
 				}
 			}
-			if(din != null) {
+			if (din != null) {
 				try {
 					din.close();
 				} catch (IOException e) {
