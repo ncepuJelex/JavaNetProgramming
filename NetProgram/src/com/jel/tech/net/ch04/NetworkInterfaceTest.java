@@ -9,7 +9,7 @@ import java.util.Enumeration;
 import org.junit.Test;
 
 /**
- *
+ *可找出NetworkInterface出来，然后就可以去构造socket,server socket了。。。
  * @author jelex.xu
  * @date 2017年5月31日
  */

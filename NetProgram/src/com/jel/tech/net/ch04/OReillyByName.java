@@ -7,7 +7,6 @@ import java.util.Arrays;
 import org.junit.Test;
 
 /**
- *
  * @author jelex.xu
  * @date 2017年5月30日
  */
@@ -98,19 +97,37 @@ public class OReillyByName {
 		}
 
 	}
-
+	/*
+	 * 测试InetAddress重写的equals方法，
+	 * 只要都是InetAddress类型，并且ip地址相同，hostname可以
+	 * 不同，它们就是相等equals的。
+	 */
 	@Test
 	public void fun6() throws UnknownHostException {
 		try {
 			InetAddress ibiblio = InetAddress.getByName("www.163.com");
 			InetAddress helios = InetAddress.getByName("open.163.com");
 			if (ibiblio.equals(helios)) {
-				System.out.println("same");
+				System.out.println("same"); //9月4日，跑出了这个结果？
 			} else {
-				System.out.println("not the same"); //output
+				System.out.println("not the same");
 			}
 		} catch (UnknownHostException ex) {
 			System.out.println("Host lookup failed.");
+		}
+	}
+	/*
+	 * 2017/9/5 20:54
+	 * 北京昌平龙兴园西区28号楼303室
+	 */
+	@Test
+	public void fun7() {
+		try {
+			InetAddress me = InetAddress.getLocalHost();
+			String dottedQuard = me.getHostAddress();
+			System.out.println("My address is :" + dottedQuard); //127.0.0.1
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
 		}
 	}
 }

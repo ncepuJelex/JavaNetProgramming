@@ -2,7 +2,12 @@ package com.jel.tech.net.ch04;
 
 import java.net.InetAddress;
 import java.util.concurrent.Callable;
-
+/**
+ * 通过Callable任务来解析ip地址成hostname,
+ * 线程池又要搞起了！它和PoolWeblog.java结合使用
+ * @author jelex.xu
+ * @date 2017年9月5日
+ */
 public class LookupTask implements Callable<String>{
 
 	private String line;
