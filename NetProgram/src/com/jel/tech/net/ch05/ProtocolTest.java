@@ -13,7 +13,8 @@ import org.junit.Test;
 
 /**
  * 龙兴园28号楼一单元303
- *
+ *测试protocol是否可用，共15种，8种标准协议，
+ *3种可订制协议，4种java内部使用的（没有document出来）
  * @author jelex.xu
  * @date 2017年6月4日
  */
@@ -57,18 +58,26 @@ public class ProtocolTest {
 		testProtocol("verbatim:http://www.adc.org/");
 
 		/*
-		 * running result: http is supported. https is supported. ftp is
-		 * supported. mailto is supported. telnet is not supported. file is
-		 * supported. gopher is not supported. ldap is not supported. jar is
-		 * supported. nfs is not supported. jdbc is not supported. rmi is not
-		 * supported. doc is not supported. netdoc is supported. systemresource
-		 * is not supported. verbatim is not supported.
+		 * running result: http is supported.
+		 *  https is supported.
+		 *   ftp is supported.
+		 *   mailto is supported.
+		 *   telnet is not supported.
+		 *   file is supported.
+		 *   gopher is not supported.
+		 *   ldap is not supported.
+		 *   jar is supported.
+		 *   nfs is not supported.
+		 *   jdbc is not supported.
+		 *   rmi is not supported.
+		 *   doc is not supported.
+		 *   netdoc is supported.
+		 *   systemresource is not supported.
+		 *   verbatim is not supported.
 		 */
-
 	}
 
 	private static void testProtocol(String string) {
-
 		try {
 			URL url = new URL(string);
 			System.out.println(url.getProtocol() + " is supported.");
@@ -144,7 +153,6 @@ public class ProtocolTest {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("请输入一个URL字符串");
 		String urlStr = sc.next();
-
 		sc.close();
 		InputStream in = null;
 		try {

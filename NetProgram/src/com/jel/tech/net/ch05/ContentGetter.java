@@ -24,6 +24,7 @@ public class ContentGetter {
 		try {
 			URL u = new URL(urlStr);
 			Object o = u.getContent();
+			System.out.println(o);
 			System.out.println(o.getClass().getName());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
